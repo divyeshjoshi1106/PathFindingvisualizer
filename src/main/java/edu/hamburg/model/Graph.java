@@ -19,15 +19,18 @@ public class Graph {
     // Destination
     private int dest;
     // Adjacency set to represent the graph.
-    private List<Set<Integer>> adj;
+    private List<Set<Edge>> adj;
 
     public Graph(int number) {
         this.number = number;
-        adj = new ArrayList<Set<Integer>>(number);
+        adj = new ArrayList<Set<Edge>>(number);
         for(int i = 0; i < number; i++) {
-            adj.add(new HashSet<>());
+            adj.add(new HashSet<Edge>());
         }
     }
 
-    public void addVertex(int )
+    public void addVertex(int a, int b) {
+        adj.get(a).add(new Edge(b, 0));
+        adj.get(b).add(new Edge(a, 0));
+    }
 }
