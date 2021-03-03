@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Edge {
     // Destination vertex of this edge
-    private int dest;
+    private String dest;
     // Weight of this edge
     private int weight;
 }

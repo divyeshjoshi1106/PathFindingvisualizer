@@ -15,20 +15,20 @@ public class Graph {
     // Number of vertices
     private int number;
     // Starting point
-    private int start = 0;
+    private String start = "";
     // Destination
-    private int dest = 0;
+    private String dest = "";
     // Adjacency set to represent the graph.
-    private List<Set<Edge>> adj;
+    private Map<String,Set<Edge>> adj;
     // Is this a weighted graph?
     private boolean weighted = false;
 
-    public Graph(int number, boolean weighted) {
+    public Graph(int number, boolean weighted, List<String> names) {
         this.number = number;
         this.weighted = weighted;
-        adj = new ArrayList<Set<Edge>>(number);
+        adj = new HashMap<>(number);
         for(int i = 0; i < number; i++) {
-            adj.add(new HashSet<Edge>());
+            adj.put(names.get(i), new HashSet<Edge>());
         }
     }
 
@@ -38,8 +38,8 @@ public class Graph {
      * @param b
      * @param weight
      */
-    public void addEdge(int a, int b, int weight) {
-        adj.get(a).add(new Edge(b, weight));
-        adj.get(b).add(new Edge(a, weight));
+    public void addEdge(String from, String to, int weight) {
+        adj.get(from).add(new Edge(to, weight));
+        adj.get(to).add(new Edge(from, weight));
     }
 }

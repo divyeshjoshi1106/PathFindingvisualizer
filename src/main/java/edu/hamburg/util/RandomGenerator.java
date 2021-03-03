@@ -2,8 +2,7 @@ package edu.hamburg.util;
 
 import edu.hamburg.model.Graph;
 
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Generates a random graph.
@@ -20,16 +19,17 @@ public class RandomGenerator {
      * @param weighted Boolean designation of whether the edges are weighted or not.
      * @return The generated random graph.
      */
-    public static Graph generateRandomGraph(int number, int maxWeight, boolean weighted) {
-        Graph graph = new Graph(number, weighted);
+    public static Graph generateRandomGraph(int number, int maxWeight, boolean weighted, List<String> names) {
+        Graph graph = new Graph(number, weighted, names);
         Random random = new Random(System.currentTimeMillis());
 
         for(int i = 0; i < number * 2; i++) {
-            int from, to, weight = 0;
+            String from, to;
+            int weight = 0;
             if(weighted)
                 weight = random.nextInt(maxWeight-1) + 1; // To force a minimum weight of 1.
-            from = random.nextInt(number);
-            while((to = random.nextInt(number)) == from);
+            from = names.get(random.nextInt(number));
+            while((to = names.get(random.nextInt(number))).equals(from));
             graph.addEdge(from, to, weight);
         }
 
@@ -37,10 +37,13 @@ public class RandomGenerator {
     }
 
     public static void main(String[] args) {
-        Graph graph = generateRandomGraph(10, 20, true);
+        String[] array = { "A1", "B1", "B2", "D3", "D5", "E10", "E4", "F2", "G1", "H2" };
+        ArrayList<String> names = new ArrayList(Arrays.asList(array));
+        Graph graph = generateRandomGraph(10, 20, true, names);
 
-        for(Set set : graph.getAdj()) {
-            System.out.println(set.toString());
+        Map map = graph.getAdj();
+        for(Object key : map.keySet()) {
+            System.out.println(key + " : " + map.get(key).toString());
         }
     }
 }
