@@ -1,5 +1,7 @@
 package edu.hamburg.pathfinder;
 
+import edu.hamburg.model.Graph;
+
 /**
  * The Pathfinder interface
  * to be implemented by the pathfinder classes implementing
@@ -10,7 +12,8 @@ package edu.hamburg.pathfinder;
  */
 public interface Pathfinder {
     // Graph graph
-
+    Graph graph = null;
+    
     /**
      * Finds the next step in the pathfinding process.
      * Returns information on the next step to take, to pass on to the GUI.
