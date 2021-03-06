@@ -39,17 +39,23 @@ public class Graph {
      * @param weight
      */
     public void addEdge(String from, String to, int weight) {
-        Vertex start = null, dest = null, temp = null;
-        Iterator iterator = adj.keySet().iterator();
-        while(iterator.hasNext()) {
-            temp = (Vertex) iterator.next();
-            if(temp.getName().equals(from)) start = temp;
-            else if (temp.getName().equals(to)) dest = temp;
-        }
-
-        assert start != null && dest != null;
+        Vertex start = findVertex(from), dest = findVertex(to);
 
         adj.get(start).add(new Edge(to, weight));
         adj.get(dest).add(new Edge(from, weight));
+    }
+
+    public Vertex findVertex(String name) {
+        Vertex temp = null;
+        Iterator iterator = adj.keySet().iterator();
+        while(iterator.hasNext()) {
+            temp = (Vertex) iterator.next();
+            if(temp.getName().equals(name)) break;
+        }
+        return temp;
+    }
+
+    public Set getSet(Vertex vertex) {
+        return adj.get(vertex);
     }
 }
