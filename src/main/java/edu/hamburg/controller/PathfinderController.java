@@ -2,6 +2,7 @@ package edu.hamburg.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,6 +11,11 @@ import java.util.List;
 
 @Controller
 public class PathfinderController {
+    @GetMapping("/")
+    public String getMain() {
+        return "main";
+    }
+
     @RequestMapping(value="/home")
     public ModelAndView pathfinder() {
         ModelAndView mav = new ModelAndView();
