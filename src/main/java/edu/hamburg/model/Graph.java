@@ -8,7 +8,7 @@ import java.util.*;
  * The graph object
  *
  * @author Yuriel849
- * @version 02.03.2021
+ * @version 06.03.2021
  */
 @Data
 public class Graph {
@@ -19,7 +19,7 @@ public class Graph {
     // Destination
     private String dest = "";
     // Adjacency set to represent the graph.
-    private Map<String,Set<Edge>> adj;
+    private Map<Vertex,Set<Edge>> adj;
     // Is this a weighted graph?
     private boolean weighted = false;
 
@@ -28,7 +28,7 @@ public class Graph {
         this.weighted = weighted;
         adj = new HashMap<>(number);
         for(int i = 0; i < number; i++) {
-            adj.put(names.get(i), new HashSet<Edge>());
+            adj.put(new Vertex(names.get(i), Integer.MAX_VALUE), new HashSet<Edge>());
         }
     }
 
@@ -39,7 +39,23 @@ public class Graph {
      * @param weight
      */
     public void addEdge(String from, String to, int weight) {
-        adj.get(from).add(new Edge(to, weight));
-        adj.get(to).add(new Edge(from, weight));
+        Vertex start = findVertex(from), dest = findVertex(to);
+
+        adj.get(start).add(new Edge(to, weight));
+        adj.get(dest).add(new Edge(from, weight));
+    }
+
+    public Vertex findVertex(String name) {
+        Vertex temp = null;
+        Iterator iterator = adj.keySet().iterator();
+        while(iterator.hasNext()) {
+            temp = (Vertex) iterator.next();
+            if(temp.getName().equals(name)) break;
+        }
+        return temp;
+    }
+
+    public Set getSet(Vertex vertex) {
+        return adj.get(vertex);
     }
 }
