@@ -5,9 +5,136 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Pathfinder</title>
+    <link rel="stylesheet" href="../static/main.css">
 </head>
 <body>
     <h1>This is the main page of our Graph-Pathfinding-Visualizer.</h1>
+
+    <nav-bar>
+        <ul>
+            <li>
+                <select name="algSel">
+                    <option value="BFS">Breadth-First Search</option>
+                    <option value="DFS">Depth-First Search</option>
+                    <option value="Dij">Dijkstra's algorithm</option>
+                    <option value="A*">A* algorithm</option>
+                </select>
+            </li>
+            <li>Generate Graph</li>
+            <li>Clear Map</li>
+            <li>Visualize</li>
+            <li>
+                <select name="speed">
+                    <option value="Fast">Fast</option>
+                    <option value="Medium">Average</option>
+                    <option value="Slow">Medium</option>
+                </select>
+            </li>
+        </ul>
+    </nav-bar>
+    <map>
+        <table border="2">
+            <tr>
+                <td id="11"></td>
+                <td id="12"></td>
+                <td id="13"></td>
+                <td id="14"></td>
+                <td id="15"></td>
+                <td id="16"></td>
+                <td id="17"></td>
+                <td id="18"></td>
+                <td id="19"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </map>
 </body>
 </html>

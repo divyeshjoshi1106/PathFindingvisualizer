@@ -1,0 +1,35 @@
+body {
+    margin: 0px;
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 14px;
+    margin: 0px;
+    margin-top: -5px;
+    background-color: gray;
+    text-align: right;
+}
+
+li>a {
+    text-decoration: none;
+    padding: 14px 16px;
+    color: blue;
+}
+
+li>a:hover {
+    background-color: #7c7878;
+}
+
+li {
+    display: inline;
+}
+
+tr {
+    height: 50px;
+}
+
+td {
+    width: 50px;
+}
