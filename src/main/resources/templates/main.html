@@ -11,28 +11,28 @@
 <body>
     <h1>This is the main page of our Graph-Pathfinding-Visualizer.</h1>
 
-    <nav-bar>
+    <div class="nav">
         <ul>
-            <li>
-                <select name="algSel">
-                    <option value="BFS">Breadth-First Search</option>
-                    <option value="DFS">Depth-First Search</option>
-                    <option value="Dij">Dijkstra's algorithm</option>
-                    <option value="A*">A* algorithm</option>
-                </select>
+            <li ><a id="generate">Generate</a></li>
+            <li ><a>Algorithms</a>
+                <ul>
+                    <li><a id="bfs">BFS</a></li>
+                    <li><a id="dfs">DFS</a></li>
+                    <li><a id="dijk">Dijkstra's</a></li>
+                    <li><a id="astar">A*</a></li>
+                </ul>
             </li>
-            <li>Generate Graph</li>
-            <li>Clear Map</li>
-            <li>Visualize</li>
-            <li>
-                <select name="speed">
-                    <option value="Fast">Fast</option>
-                    <option value="Medium">Average</option>
-                    <option value="Slow">Medium</option>
-                </select>
+            <li ><a id="clr">Clear</a></li>
+            <li ><a>Speed</a>
+                <ul>
+                    <li><a id="fast">Fast</a></li>
+                    <li><a id="med">Medium</a></li>
+                    <li><a id="slow">Slow</a></li>
+                </ul>
             </li>
+            <li ><a id="start">Visualize</a></li>
         </ul>
-    </nav-bar>
+    </div>
     <map>
         <table border="2">
             <tr>
