@@ -43,6 +43,14 @@ body {
   font-size: .8em;
 }
 
+tr {
+    height: 50px;
+}
+
+td {
+    width: 50px;
+}
+
 /*******************************************
    Style menu for larger screens
 
