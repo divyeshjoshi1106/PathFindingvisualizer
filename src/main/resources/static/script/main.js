@@ -1,10 +1,11 @@
 $(document).ready(function() {
-    $('#generate').click($.ajax({
+    $('#generate').click(function() {
+        $.ajax({
         url: "/generate",
         success: function(result) {
-            //alert(result)
-        }
-    }))
+            alert(result)
+        }});
+    });
 });
 
 var algorithm = null;

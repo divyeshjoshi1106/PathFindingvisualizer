@@ -6,7 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pathfinder</title>
-    <link rel="stylesheet" href="../static/main.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="static/script/main.js"></script>
 </head>
 <body>
     <h1>This is the main page of our Graph-Pathfinding-Visualizer.</h1>
@@ -16,18 +18,18 @@
             <li ><a id="generate">Generate</a></li>
             <li ><a>Algorithms</a>
                 <ul>
-                    <li><a id="bfs">BFS</a></li>
-                    <li><a id="dfs">DFS</a></li>
-                    <li><a id="dijk">Dijkstra's</a></li>
-                    <li><a id="astar">A*</a></li>
+                    <li><a id="bfs" onclick=setAlgorithm(id)>BFS</a></li>
+                    <li><a id="dfs" onclick=setAlgorithm(id)>DFS</a></li>
+                    <li><a id="dijkstra" onclick=setAlgorithm(id)>Dijkstra's</a></li>
+                    <li><a id="astar" onclick=setAlgorithm(id)>A*</a></li>
                 </ul>
             </li>
             <li ><a id="clr">Clear</a></li>
             <li ><a>Speed</a>
                 <ul>
-                    <li><a id="fast">Fast</a></li>
-                    <li><a id="med">Medium</a></li>
-                    <li><a id="slow">Slow</a></li>
+                    <li><a id="fast" onclick=setSpeed(id)>Fast</a></li>
+                    <li><a id="medium" onclick=setSpeed(id)>Medium</a></li>
+                    <li><a id="slow" onclick=setSpeed(id)>Slow</a></li>
                 </ul>
             </li>
             <li ><a id="start">Visualize</a></li>
