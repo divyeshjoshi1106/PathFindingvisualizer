@@ -20,12 +20,9 @@ public class Graph {
     private String dest = "";
     // Adjacency set to represent the graph.
     private Map<Vertex,Set<Edge>> adj;
-    // Is this a weighted graph?
-    private boolean weighted = false;
 
-    public Graph(int number, boolean weighted, List<String> names) {
+    public Graph(int number, List<String> names) {
         this.number = number;
-        this.weighted = weighted;
         adj = new HashMap<>(number);
         for(int i = 0; i < number; i++) {
             adj.put(new Vertex(names.get(i), Integer.MAX_VALUE), new HashSet<Edge>());
@@ -53,9 +50,5 @@ public class Graph {
             if(temp.getName().equals(name)) break;
         }
         return temp;
-    }
-
-    public Set getSet(Vertex vertex) {
-        return adj.get(vertex);
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
  * @version 06.03.2021
  */
 public interface Pathfinder {
-    public List findPath(int number, int maxWeight, boolean weighted, String[] names, String start, String dest);
+    public List findPath(int number, int maxWeight, String[] names, String start, String dest);
 
     /**
      * Finds the next step in the pathfinding process.
