@@ -39,7 +39,9 @@ public class RandomGenerator {
 
         for(int i = 0; i < number * 2; i++) {
             String from, to;
-            int weight = random.nextInt(maxWeight-1) + 1; // To force a minimum weight of 1.
+            int weight = 0;
+            if(maxWeight != 0)
+                weight = random.nextInt(maxWeight-1) + 1; // To force a minimum weight of 1.
             from = names.get(random.nextInt(number));
             while((to = names.get(random.nextInt(number))).equals(from));
             graph.addEdge(from, to, weight);

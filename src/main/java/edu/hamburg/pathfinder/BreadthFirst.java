@@ -1,33 +1,33 @@
 package edu.hamburg.pathfinder;
 
+import edu.hamburg.model.Edge;
 import edu.hamburg.model.Graph;
 import edu.hamburg.model.Vertex;
+import edu.hamburg.util.RandomGenerator;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BreadthFirst implements Pathfinder {
     @Override
     public List findPath(Graph graph, int number, String start, String dest) {
-        // adj == graph, s == start, dest == dest, v == number, maxWeight = 0
-
         ArrayList<String> indices = new ArrayList<>(number);
         int[] pred = new int[number]; // Index 'i' of pred stores predecessor of i
         int[] dist = new int[number]; // Index 'i' of dist stores distance of i from start
 
-        for(Vertex vertex : graph.getAdj().keySet()) { // Initialize the String array indices
+        for(Vertex vertex : graph.getAdj().keySet()) { // Initialize indices
             indices.add(vertex.getName());
         }
+        int src = indices.indexOf(start);
+        int end = indices.indexOf(dest);
 
-        if (!BFS(graph, start, dest, number, pred, dist)) {
+        if (!BFS(graph, src, end, number, indices, pred, dist)) { // Initialize pred and dist
             System.out.println("Given source and destination are not connected");
             return null;
         }
 
         // LinkedList to store path
         LinkedList<Integer> path = new LinkedList<>();
-        int crawl = indices.indexOf(dest);
+        int crawl = end;
         path.add(crawl);
         while (pred[crawl] != -1) {
             path.add(pred[crawl]);
@@ -35,7 +35,7 @@ public class BreadthFirst implements Pathfinder {
         }
 
         // Print distance
-        System.out.println("Shortest path length is: " + dist[indices.indexOf(dest)]);
+        System.out.println("Shortest path length is: " + dist[end]);
 
         // Print path
         System.out.println("Path is ::");
@@ -46,13 +46,14 @@ public class BreadthFirst implements Pathfinder {
         return null;
     }
 
-
     // a modified version of BFS that stores predecessor
     // of each vertex in array pred
     // and its distance from source in array dist
-    private static boolean BFS(ArrayList<ArrayList<Integer>> adj, int src,
-                               int dest, int v, int[] pred, int[] dist)
-    {
+    private static boolean BFS(Graph graph, int src, int end, int number,
+        List indices, int[] pred, int[] dist) {
+        Edge edge = null;
+        Vertex vertex = null;
+
         // a queue to maintain queue of vertices whose
         // adjacency list is to be scanned as per normal
         // BFS algorithm using LinkedList of Integer type
@@ -61,13 +62,13 @@ public class BreadthFirst implements Pathfinder {
         // boolean array visited[] which stores the
         // information whether ith vertex is reached
         // at least once in the Breadth first search
-        boolean[] visited = new boolean[v];
+        boolean[] visited = new boolean[number];
 
         // initially all vertices are unvisited
         // so v[i] for all i is false
         // and as no path is yet constructed
         // dist[i] for all i set to infinity
-        for (int i = 0; i < v; i++) {
+        for (int i = 0; i < number; i++) {
             visited[i] = false;
             dist[i] = Integer.MAX_VALUE;
             pred[i] = -1;
@@ -82,49 +83,31 @@ public class BreadthFirst implements Pathfinder {
         // bfs Algorithm
         while (!queue.isEmpty()) {
             int u = queue.remove();
-            for (int i = 0; i < adj.get(u).size(); i++) {
-                if (!visited[adj.get(u).get(i)]) {
-                    visited[adj.get(u).get(i)] = true;
-                    dist[adj.get(u).get(i)] = dist[u] + 1;
-                    pred[adj.get(u).get(i)] = u;
-                    queue.add(adj.get(u).get(i));
+            String name = (String) indices.get(u);
+            Iterator iterator = graph.getAdj().get(graph.findVertex(name)).iterator();
+            while(iterator.hasNext()) {
+                edge = (Edge) iterator.next();
+                int tempDest = indices.indexOf(edge.getDest());
+                if (!visited[tempDest]) {
+                    visited[tempDest] = true;
+                    dist[tempDest] = dist[u] + 1;
+                    pred[tempDest] = u;
+                    queue.add(tempDest);
 
                     // stopping condition (when we find
                     // our destination)
-                    if (adj.get(u).get(i) == dest)
+                    if (tempDest == end)
                         return true;
                 }
             }
         }
         return false;
     }
-    public static void main(String[] args)
-    {
-//        // No of vertices
-//        int v = 8;
-//
-//        // Adjacency list for storing which vertices are connected
-//        ArrayList<ArrayList<Integer>> adj =
-//                new ArrayList<ArrayList<Integer>>(v);
-//        for (int i = 0; i < v; i++) {
-//            adj.add(new ArrayList<Integer>());
-//        }
-//
-//        // Creating graph given in the above diagram.
-//        // add_edge function takes adjacency list, source
-//        // and destination vertex as argument and forms
-//        // an edge between them.
-//        addEdge(adj, 0, 1);
-//        addEdge(adj, 0, 3);
-//        addEdge(adj, 1, 2);
-//        addEdge(adj, 3, 4);
-//        addEdge(adj, 3, 7);
-//        addEdge(adj, 4, 5);
-//        addEdge(adj, 4, 6);
-//        addEdge(adj, 4, 7);
-//        addEdge(adj, 5, 6);
-//        addEdge(adj, 6, 7);
-//        int source = 0, dest = 7;
-        printShortestDistance(adj, source, dest, v);
+
+    public static void main(String[] args) {
+        String[] names = { "A1", "B1", "C4", "B2", "D3", "D5", "E10", "E4", "F2", "G1", "H2", "I9", "L3", "J6", "U8", "P0", "R3", "E12", "X20", "Z1" };
+        BreadthFirst bfs = new BreadthFirst();
+        Graph graph = RandomGenerator.generateRandomGraph(20, 0, Arrays.asList(names));
+        List path = bfs.findPath(graph, 20, "A1", "H2");
     }
 }
