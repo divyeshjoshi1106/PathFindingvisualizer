@@ -24,16 +24,15 @@ public class Dijkstra implements Pathfinder {
 
     @Override
     public List findPath(
+            Graph graph,
             int number,
-            int maxWeight,
-            String[] names,
             String start,
             String dest) {
         Vertex tempVertex = null;
         Edge tempEdge = null;
         int temp = 0;
 
-        graph = RandomGenerator.generateRandomGraph(number, maxWeight, new ArrayList<>(Arrays.asList(names)));
+        //graph = RandomGenerator.generateRandomGraph(number, maxWeight, new ArrayList<>(Arrays.asList(names)));
         graph.setStart(start);
         graph.setDest(dest);
 
@@ -69,7 +68,8 @@ public class Dijkstra implements Pathfinder {
     public static void main(String[] args) {
         String[] names = { "A1", "B1", "B2", "D3", "D5", "E10", "E4", "F2", "G1", "H2" };
         Dijkstra dijkstra = new Dijkstra();
-        List path = dijkstra.findPath(4, 10, names, "A1", "H2");
+        Graph graph = RandomGenerator.generateRandomGraph(10, 20, Arrays.asList(names));
+        List path = dijkstra.findPath(graph, 4, "A1", "H2");
         Iterator pathIterator = path.listIterator(path.size());
         while(pathIterator.hasNext())
             System.out.println(pathIterator.next());

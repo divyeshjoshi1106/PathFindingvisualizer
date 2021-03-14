@@ -13,14 +13,8 @@ import java.util.List;
  * the graph pathfinding algorithms, such as the Depth-First Search or Dijkstra's algorithm.
  *
  * @author Yuriel849
- * @version 06.03.2021
+ * @version 14.03.2021
  */
 public interface Pathfinder {
-    public List findPath(int number, int maxWeight, String[] names, String start, String dest);
-
-    /**
-     * Finds the next step in the pathfinding process.
-     * Returns information on the next step to take, to pass on to the GUI.
-     */
-    // public Set findNextStep() {}
+    public List findPath(Graph graph, int number, String start, String dest);
 }
