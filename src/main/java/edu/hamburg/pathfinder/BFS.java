@@ -7,7 +7,7 @@ import edu.hamburg.util.RandomGenerator;
 
 import java.util.*;
 
-public class BreadthFirst implements Pathfinder {
+public class BFS implements Pathfinder {
     @Override
     public List findPath(Graph graph, int number, String start, String dest) {
         ArrayList<String> indices = new ArrayList<>(number);
@@ -106,7 +106,7 @@ public class BreadthFirst implements Pathfinder {
 
     public static void main(String[] args) {
         String[] names = { "A1", "B1", "C4", "B2", "D3", "D5", "E10", "E4", "F2", "G1", "H2", "I9", "L3", "J6", "U8", "P0", "R3", "E12", "X20", "Z1" };
-        BreadthFirst bfs = new BreadthFirst();
+        BFS bfs = new BFS();
         Graph graph = RandomGenerator.generateRandomGraph(20, 0, Arrays.asList(names));
         List path = bfs.findPath(graph, 20, "A1", "H2");
     }
