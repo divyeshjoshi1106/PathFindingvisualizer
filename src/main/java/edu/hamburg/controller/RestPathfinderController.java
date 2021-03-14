@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RestPathfinderController {
-    @RequestMapping("/generate")
+    private Graph graph = null;
+
+    @RequestMapping("/get")
     public String generateGraph() throws JsonProcessingException {
         System.out.println("Graph Generated.");
-        Graph graph = RandomGenerator.generateRandomGraph(10, 20);
+        graph = RandomGenerator.generateRandomGraph(10, 20);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(graph);
     }
